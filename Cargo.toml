@@ -1,8 +1,8 @@
 [package]
 name = "common-strings"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
-author = "Merlin Fuchs"
+authors = ["Merlin Fuchs"]
 readme = "README.md"
 repository = "https://github.com/merlinfuchs/common-strings"
 license = "MIT"

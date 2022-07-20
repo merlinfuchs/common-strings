@@ -74,8 +74,26 @@ macro_rules! common_strings {
         }
 
         impl std::fmt::Display for $EnumName {
-            fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
-                f.write_str(self.to_str())
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                f.write_str($crate::common_strings_trait::CommonStrings::to_str(self))
+            }
+        }
+
+        impl From<::std::string::String> for $EnumName {
+            fn from(v: ::std::string::String) -> Self {
+                $crate::common_strings_trait::CommonStrings::from_cow(v.into())
+            }
+        }
+
+        impl From<&str> for $EnumName {
+            fn from(v: &str) -> Self {
+                $crate::common_strings_trait::CommonStrings::from_cow(v.into())
+            }
+        }
+
+        impl From<$EnumName> for std::borrow::Cow<'_, str> {
+            fn from(v: $EnumName) -> Self {
+                $crate::common_strings_trait::CommonStrings::into_cow(v)
             }
         }
 
